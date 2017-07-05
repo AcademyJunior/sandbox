@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {HelloHttpService} from "./hello-http.service";
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
