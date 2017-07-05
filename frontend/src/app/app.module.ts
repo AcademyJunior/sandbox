@@ -7,17 +7,21 @@ import { AppComponent } from './app.component';
 import {HelloHttpService} from "./hello-http.service";
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
+import {AppRoutingModule} from "./app-routing.module";
+import { ExampleFeatureComponent } from './features/example-feature/example-feature.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ExampleFeatureComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [HelloHttpService],
   bootstrap: [AppComponent]
