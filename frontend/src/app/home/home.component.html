@@ -1,3 +1,16 @@
-<p>
-  home works!
-</p>
+<div class="row">
+  <div class="col-sm-6 col-md-4" *ngFor="let feature of features">
+    <div class="thumbnail">
+      <img src="http://images.clipartpanda.com/feature-clipart-feature-md.png" alt="{{feature.name}}">
+      <div class="caption">
+        <h3>{{feature.name}}</h3>
+        <p>{{feature.description}}</p>
+        <p>Author: {{feature.author}}</p>
+        <br>
+        <p>
+          <a href="#" class="btn btn-primary center-block" role="button">Check it out!</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
