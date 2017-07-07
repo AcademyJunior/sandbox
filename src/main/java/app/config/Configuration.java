@@ -40,7 +40,6 @@ public class Configuration {
         return bean.getObject();
     }
 
-
     @Bean
     DataSource dataSource() {
         return DataSourceBuilder
@@ -51,7 +50,7 @@ public class Configuration {
                 .driverClassName("com.mysql.cj.jdbc.Driver")
                 .build();
     }
-    
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
