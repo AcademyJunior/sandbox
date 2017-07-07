@@ -20,6 +20,15 @@ public class Configuration {
         Flyway flyway = new Flyway();
         flyway.setBaselineOnMigrate(true);
         flyway.setDataSource(dataSource());
+        flyway.setSchemas("SPRING_SANDBOX");
+        return flyway;
+    }
+
+    @Bean(initMethod = "migrate")
+    public Flyway flyway(DataSource administratorDataSource) {
+        Flyway flyway = new Flyway();
+        flyway.setDataSource(administratorDataSource);
+
         return flyway;
     }
 
@@ -38,12 +47,11 @@ public class Configuration {
                 .create()
                 .username("root")
                 .password("root")
-                .url("jdbc:mysql://localhost:3306/test")
-                .driverClassName("com.mysql.jdbc.Driver")
+                .url("jdbc:mysql://localhost:3312/SPRING_SANDBOX")
+                .driverClassName("com.mysql.cj.jdbc.Driver")
                 .build();
     }
-
-
+    
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {
