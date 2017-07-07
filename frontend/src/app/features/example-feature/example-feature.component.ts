@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HelloHttpService} from "../../hello-http.service";
+import {FeatureHttpService} from "../../feature-http.service";
 
 @Component({
   selector: 'app-example-feature',
@@ -8,10 +8,9 @@ import {HelloHttpService} from "../../hello-http.service";
 })
 export class ExampleFeatureComponent implements OnInit {
 
-  constructor(private helloHttp: HelloHttpService) { }
+  constructor() { }
 
   ngOnInit() {
-    console.log(this.helloHttp.getServers());
   }
 
 }

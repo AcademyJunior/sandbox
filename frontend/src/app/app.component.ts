@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HelloHttpService} from "./hello-http.service";
+import {FeatureHttpService} from "./feature-http.service";
 
 @Component({
   selector: 'app-root',
@@ -14,12 +14,12 @@ export class AppComponent implements OnInit{
 
   title: string = 'now working';
 
-  constructor(private helloHttpService: HelloHttpService){
+  constructor(private helloHttpService: FeatureHttpService){
 
   }
 
   getTitle(){
-    this.helloHttpService.getServers()
+    this.helloHttpService.getFeatures()
       .subscribe(
         (hello: any) => {
           console.log(hello)

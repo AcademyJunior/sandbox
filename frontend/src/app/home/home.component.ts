@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {FeatureHttpService} from "../feature-http.service";
 
 @Component({
   selector: 'app-home',
@@ -7,27 +8,16 @@ import {Component, OnInit} from "@angular/core";
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  constructor(private featureHttpService: FeatureHttpService) {
   }
 
-  description = 'Programmable devices have existed at least as far back as 1206 AD, when the automata of Al-Jazari' +
-    ' were programmable, via pegs and cams, to play various rhythms and drum patterns';
-
-  features = [
-    {author: 'Ninja', name: 'example', description: this.description},
-    {author: 'Orzech', name: 'example', description: this.description},
-    {author: 'Ninja', name: 'example', description: this.description},
-    {author: 'Orzech', name: 'example', description: this.description},
-    {author: 'Ninja', name: 'example', description: this.description},
-    {author: 'Orzech', name: 'example', description: this.description},
-    {author: 'Maras', name: 'example', description: this.description}
-  ];
+  features = [];
 
   ngOnInit() {
+    this.featureHttpService.getFeatures().subscribe(
+      (features) => this.features = features
+    );
   }
-
-  getFeatures() {
-    return this.features;
-  }
-
 }
+
+

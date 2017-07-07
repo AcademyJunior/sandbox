@@ -1,9 +1,13 @@
 package app.config;
 
 import org.flywaydb.core.Flyway;
+import org.jooq.ConnectionProvider;
+import org.jooq.impl.DataSourceConnectionProvider;
+import org.jooq.impl.DefaultDSLContext;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -11,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+
+import static org.jooq.SQLDialect.MYSQL;
 
 @org.springframework.context.annotation.Configuration
 public class Configuration {
@@ -52,7 +58,7 @@ public class Configuration {
     }
 
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    public WebMvcConfigurer webMvcConfigurer() {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
@@ -60,6 +66,16 @@ public class Configuration {
                         .allowedMethods("PUT", "DELETE", "GET", "POST");
             }
         };
+    }
+
+    @Bean
+    public DataSourceConnectionProvider connectionProvider(DataSource dataSource) {
+        return new DataSourceConnectionProvider(new TransactionAwareDataSourceProxy(dataSource));
+    }
+
+    @Bean
+    public DefaultDSLContext dsl(ConnectionProvider connectionProvider) {
+        return new DefaultDSLContext(connectionProvider, MYSQL);
     }
 }
 
