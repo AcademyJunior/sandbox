@@ -1,4 +1,4 @@
-package app.hero_maker;
+package app.hero;
 
 import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.stereotype.Controller;
@@ -9,38 +9,38 @@ import javax.validation.Valid;
 
 import java.util.List;
 
+@RequestMapping("/heroes/")
 @Controller
 public class HeroController {
 
     @Autowired
-    private DataValidator validator;
+    private HeroDao heroDao;
+
+    @Autowired
+    private HeroValidator validator;
 
     @InitBinder
     private void initBinder(WebDataBinder binder){
         binder.setValidator(validator);
     }
 
-    @Autowired
-    private HeroDao heroDao;
-
-    @GetMapping("/heroes")
-    public @ResponseBody
-    List<Hero> getHeroes() {
+    @GetMapping
+    public @ResponseBody List<Hero> getHeroes() {
         return heroDao.getHeroes();
     }
 
-    @PostMapping("/heroes/add")
+    @PostMapping
     public void addHero(@RequestBody @Valid Hero hero) {
         heroDao.addHero(hero);
     }
 
-    @PostMapping("/heroes/delete")
-    public void deleteHero(@RequestParam long id) {
-        heroDao.deleteHero(id);
+    @DeleteMapping("/{heroId}")
+    public void deleteHero(@PathVariable int heroId) {
+        heroDao.deleteHero(heroId);
     }
 
-    @PostMapping("heroes/update")
-    public void updateHero(@RequestParam long id, @RequestBody @Valid Hero hero) {
-        heroDao.updateHero(id, hero);
+    @PutMapping("/{heroId}")
+    public void updateHero(@PathVariable long heroId, @RequestBody @Valid Hero hero) {
+        heroDao.updateHero(heroId, hero);
     }
 }

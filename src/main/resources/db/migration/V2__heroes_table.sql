@@ -7,4 +7,4 @@ CREATE TABLE HEROES (
   PRIMARY KEY (ID)
 );
 
-INSERT INTO FEATURES VALUES(null, 'HeroMaker', 'Choose your name and spread 10 skill points.', 'Marek', 'https://psmedia.playstation.com/is/image/psmedia/fallout-two-column-01-ps4-eu-05Jun15?$2ColExpand_Image$');
+INSERT INTO FEATURES VALUES(default, 'HeroMaker', 'Choose your name and spread 10 skill points.', 'Marek', 'https://psmedia.playstation.com/is/image/psmedia/fallout-two-column-01-ps4-eu-05Jun15?$2ColExpand_Image$');

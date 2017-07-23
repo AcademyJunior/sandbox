@@ -1,4 +1,4 @@
-package app.hero_maker;
+package app.hero;
 
 public class Hero {
 
