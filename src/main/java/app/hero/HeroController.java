@@ -1,7 +1,7 @@
 package app.hero;
 
 import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,13 +20,20 @@ public class HeroController {
     private HeroValidator validator;
 
     @InitBinder
-    private void initBinder(WebDataBinder binder){
+    private void initBinder(WebDataBinder binder) {
         binder.setValidator(validator);
     }
 
     @GetMapping
-    public @ResponseBody List<Hero> getHeroes() {
+    public @ResponseBody
+    List<Hero> getHeroes() {
         return heroDao.getHeroes();
+    }
+
+    @GetMapping("/{heroId}")
+    public @ResponseBody
+    Hero getHero(@PathVariable int heroId) {
+        return heroDao.getHero(heroId);
     }
 
     @PostMapping

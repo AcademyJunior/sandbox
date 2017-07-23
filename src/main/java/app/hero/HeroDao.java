@@ -19,6 +19,12 @@ public class HeroDao {
         return dslContext.selectFrom(HEROES).fetchInto(Hero.class);
     }
 
+    public Hero getHero(long id) {
+        return dslContext.selectFrom(HEROES)
+                .where(HEROES.ID.eq(id))
+                .fetchOne().into(Hero.class);
+    }
+
     public void addHero(Hero hero) {
         dslContext.insertInto(HEROES, HEROES.NAME, HEROES.STRENGTH, HEROES.AGILITY, HEROES.INTELLIGENCE)
                 .values(hero.getName(), hero.getStrength(), hero.getAgility(), hero.getIntelligence())
