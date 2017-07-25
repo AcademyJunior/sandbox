@@ -1,13 +1,12 @@
 package app.hero;
 
 import org.jooq.DSLContext;
-
-import static org.jooq.util.maven.example.tables.Heroes.HEROES;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+import static org.jooq.util.maven.example.tables.Heroes.HEROES;
 
 @Repository
 public class HeroDao {

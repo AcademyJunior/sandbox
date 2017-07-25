@@ -1,16 +1,14 @@
 package app.hero;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
 import java.util.List;
 
 @RequestMapping("/heroes/")
-@Controller
+@RestController
 public class HeroController {
 
     @Autowired
@@ -25,14 +23,12 @@ public class HeroController {
     }
 
     @GetMapping
-    public @ResponseBody
-    List<Hero> getHeroes() {
+    public List<Hero> getHeroes() {
         return heroDao.getHeroes();
     }
 
     @GetMapping("/{heroId}")
-    public @ResponseBody
-    Hero getHero(@PathVariable int heroId) {
+    public Hero getHero(@PathVariable int heroId) {
         return heroDao.getHero(heroId);
     }
 
