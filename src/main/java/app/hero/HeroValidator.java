@@ -4,9 +4,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
-import static app.hero.ErrorKeys.*;
-
 import java.util.Arrays;
+
+import static app.hero.ErrorKeys.*;
 
 @Component
 public class HeroValidator implements org.springframework.validation.Validator {
