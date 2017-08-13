@@ -29,8 +29,8 @@ public class TaskController {
     }
 
     @GetMapping("/tasks/{taskId}")
-    public ResponseEntity<Task> getTask(@PathVariable int taskId) {
-        if(taskDao.getTask(taskId).isPresent()){
+    public ResponseEntity<Task> getTask(@PathVariable long taskId) {
+        if (taskDao.getTask(taskId).isPresent()) {
             return new ResponseEntity<Task>(taskDao.getTask(taskId).get(), HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -44,7 +44,7 @@ public class TaskController {
     }
 
     @PutMapping("/tasks/{taskId}")
-    public ResponseEntity<Task> updateTask(@Valid @RequestBody Task task, @PathVariable int taskId) {
+    public ResponseEntity<Task> updateTask(@Valid @RequestBody Task task, @PathVariable long taskId) {
         if (taskDao.getTask(taskId).isPresent()) {
             taskDao.updateTask(task, taskId);
             return new ResponseEntity<Task>(task, HttpStatus.OK);
@@ -53,7 +53,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/tasks/{taskId}")
-    public ResponseEntity<Task> deleteTask(@PathVariable int taskId) {
+    public ResponseEntity<Task> deleteTask(@PathVariable long taskId) {
         if (taskDao.getTask(taskId).isPresent()) {
             taskDao.deleteTask(taskId);
             return new ResponseEntity<Task>(HttpStatus.OK);
