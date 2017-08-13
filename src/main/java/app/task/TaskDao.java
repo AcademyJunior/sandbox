@@ -5,6 +5,8 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
+
 import static org.jooq.util.maven.example.Tables.TASKS;
 
 @Repository
@@ -32,20 +34,21 @@ public class TaskDao {
 
 
     public void deleteTask(long taskId){
-        dslContext.delete(TASKS).where(TASKS.TASK_ID.eq(taskId)).execute();
+        dslContext.delete(TASKS)
+                .where(TASKS.TASK_ID.eq(taskId))
+                .execute();
     }
 
 
-    public Task getTask(long taskId){
-
+    public Optional<Task> getTask(long taskId){
         return dslContext.selectFrom(TASKS)
                 .where(TASKS.TASK_ID.eq(taskId))
-                .fetchAny()
-                .into(Task.class);
+                .fetchOptionalInto(Task.class);
     }
 
 
     public List<Task> getAllTasks(){
-        return dslContext.selectFrom(TASKS).fetchInto(Task.class);
+        return dslContext.selectFrom(TASKS)
+                .fetchInto(Task.class);
     }
 }
