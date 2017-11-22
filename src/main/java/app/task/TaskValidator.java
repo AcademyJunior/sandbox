@@ -8,8 +8,8 @@ import org.springframework.validation.Validator;
 
 @Component
 public class TaskValidator implements Validator {
-    private static final String NEGATIVE_VALUE = "NEGATIVE_VALUE";
-    private static final String REQUIRED_FIELD = "REQUIRED_FIELD";
+    protected static final String NEGATIVE_VALUE = "NEGATIVE_VALUE";
+    protected static final String REQUIRED_FIELD = "REQUIRED_FIELD";
 
     @Override
     public boolean supports(Class clazz) {

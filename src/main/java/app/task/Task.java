@@ -8,6 +8,13 @@ public class Task {
     private int estimateTime;
     private int estimatePrice;
 
+    public Task(String taskName, String taskDescription, int estimateTime, int estimatePrice) {
+        this.taskName = taskName;
+        this.taskDescription = taskDescription;
+        this.estimateTime = estimateTime;
+        this.estimatePrice = estimatePrice;
+    }
+
 
     public String getTaskName() {
         return taskName;
